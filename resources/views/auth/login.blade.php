@@ -4,7 +4,7 @@
 
     <h2 class="text-xl font-semibold text-white mb-6 text-center">Sign in to your account</h2>
 
-    <form method="POST" action="{{ route('login') }}" class="space-y-5">
+    <form method="POST" action="{{ route('login') }}" class="space-y-5" x-data="{ showPassword: false }">
         @csrf
 
         <!-- Email Address -->
@@ -21,7 +21,7 @@
         <!-- Password -->
         <div>
             <label for="password" class="block text-sm font-medium text-slt-muted mb-2">{{ __('Password') }}</label>
-            <input id="password" type="password" name="password"
+            <input id="password" :type="showPassword ? 'text' : 'password'" name="password"
                    class="w-full rounded-xl bg-white/5 border-white/10 text-white placeholder-slt-muted focus:border-slt-primary focus:ring-slt-primary"
                    required autocomplete="current-password" />
             @error('password')
@@ -32,7 +32,7 @@
         <!-- Remember Me -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded bg-white/5 border-white/10 text-slt-primary focus:ring-slt-primary" name="remember">
+                <input id="remember_me" type="checkbox" x-model="showPassword" class="rounded bg-white/5 border-white/10 text-slt-primary focus:ring-slt-primary" name="remember">
                 <span class="ms-2 text-sm text-slt-muted">{{ __('Remember me') }}</span>
             </label>
 
